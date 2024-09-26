@@ -13,6 +13,10 @@ object ShutdownSlashCommand: SlashCommand(
 ) {
 
     override fun execute(event: SlashCommandInteractionEvent) {
+        if (!event.isFromGuild) {
+            return
+        }
+
         event
             .reply("Shutting down...")
             .setEphemeral(true)

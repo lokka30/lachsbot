@@ -15,6 +15,10 @@ object PurgeSlashCommand : SlashCommand(
     private const val AMOUNT: Int = 10
 
     override fun execute(event: SlashCommandInteractionEvent) {
+        if (!event.isFromGuild) {
+            return
+        }
+
         event
             .deferReply(true)
             .queue { deferHook ->
