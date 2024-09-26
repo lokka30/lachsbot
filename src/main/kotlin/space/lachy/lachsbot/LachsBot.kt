@@ -14,6 +14,7 @@ import space.lachy.lachsbot.listener.record.EmbedPosterQueueThread
 import space.lachy.lachsbot.listener.record.RecordListenerManager
 import space.lachy.lachsbot.util.DiscordUtil
 import space.lachy.lachsbot.util.SystemUtil
+import space.lachy.lachsbot.util.ThrowableUtil
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.io.path.Path
 import kotlin.io.path.pathString
@@ -96,6 +97,19 @@ object LachsBot {
         Mongo.stop()
         logger.info("Thank you and goodbye")
         exitProcess(0)
+    }
+
+    fun reload(): Boolean {
+        logger.info("Reloading...")
+        try {
+            Config.reload()
+        } catch (e: Exception) {
+            logger.error("Reload unsuccessful!")
+            ThrowableUtil.logThrowable(e, "Unable to soft-reload")
+            return false
+        }
+        logger.info("Reloaded successfully.")
+        return true
     }
 
     private fun loadListeners() {

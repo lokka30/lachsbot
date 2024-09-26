@@ -1,8 +1,6 @@
 package space.lachy.lachsbot.cli.command
 
-import space.lachy.lachsbot.LachsBot.logger
-import space.lachy.lachsbot.config.Config
-import space.lachy.lachsbot.util.ThrowableUtil
+import space.lachy.lachsbot.LachsBot
 
 object ReloadCliCommand : CliCommand {
 
@@ -12,13 +10,6 @@ object ReloadCliCommand : CliCommand {
     override val usage: String = aliases[0]
 
     override fun execute(id: String, args: List<String>) {
-        logger.info("Reloading...")
-        try {
-            Config.reload()
-        } catch (e: Exception) {
-            ThrowableUtil.logThrowable(e, "Unable to soft-reload")
-            return
-        }
-        logger.info("Reloaded successfully.")
+        LachsBot.reload()
     }
 }
