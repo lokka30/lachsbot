@@ -77,6 +77,19 @@ Thanks to the following projects for making this bot possible.
 
   Intelligent IDE for Kotlin/Java
 
+## Usage
+
+These instructions are for Docker. If you don't want to use DOcker, you can alternatively build and run it locally using JDK 8, Maven, and MongoDB.
+
+**Docker commands below may require root privileges (`sudo`).**
+
+Steps:
+
+1. Download this project (`git clone` or just Download ZIP on GitHub).
+2. Adjust your working directory (`cd`).
+3. Run `docker compose up -d`.
+4. Optionally, stop the bot using `docker compose down`, and make any necessary configuration changes.
+
 ## Branches
 
 - `master`
