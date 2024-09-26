@@ -1,0 +1,7 @@
+activity-status: ~
+embed-poster:
+  channel-by-guild:
+  suppressed-records:
+    - "message_received_records"
+join-announcer:
+  channel-by-guild:
