@@ -9,11 +9,11 @@ services:
 
   lachsbot:
     depends_on: [ "mongo" ]
-    build: .
+    # build: .
     volumes:
       - ./config:/opt/lachsbot-app/config
     environment:
-      #TOKEN: "CHANGE ME"
+      # TOKEN: "CHANGE ME"
       DB_NAME: "lachsbot"
       DB_CONNECTION_STR: "mongodb://mongo:27017"
 
