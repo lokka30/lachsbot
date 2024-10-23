@@ -5,6 +5,7 @@ import com.mongodb.client.model.Sorts
 import kotlinx.coroutines.flow.firstOrNull
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.entities.Message
+import net.dv8tion.jda.api.entities.MessageEmbed.VALUE_MAX_LENGTH
 import org.bson.BsonDateTime
 import org.bson.BsonInt64
 import space.lachy.lachsbot.database.mongo.Mongo
@@ -83,7 +84,7 @@ object RecordListenerManager {
         for(att in attachments) {
             builder.addField(
                 "Attachment ${i}",
-                "Name: '${att.name}'; Extension: '${att.extension}'; URL: '${att.url}'".truncate(),
+                "Name: '${att.name}'; Extension: '${att.extension}'; URL: '${att.url}'".truncate(VALUE_MAX_LENGTH),
                 false
             )
 

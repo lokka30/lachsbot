@@ -1,6 +1,7 @@
 package space.lachy.lachsbot.database.mongo.collection
 
 import net.dv8tion.jda.api.EmbedBuilder
+import net.dv8tion.jda.api.entities.MessageEmbed.VALUE_MAX_LENGTH
 import org.bson.BsonDateTime
 import org.bson.codecs.pojo.annotations.BsonId
 import org.bson.codecs.pojo.annotations.BsonProperty
@@ -66,8 +67,8 @@ data class RecordMessageUpdate(
     fun toEmbedBuilder(): EmbedBuilder {
         val builder = EmbedBuilder()
             .setTitle("Message Updated")
-            .addField("New Message Raw", messageRawNew.truncate(), false)
-            .addField("Old Message Raw Last Known", messageRawLastKnown?.truncate() ?: "N/A", false)
+            .addField("New Message Raw", messageRawNew.truncate(VALUE_MAX_LENGTH), false)
+            .addField("Old Message Raw Last Known", messageRawLastKnown?.truncate(VALUE_MAX_LENGTH) ?: "N/A", false)
             .addField("Message ID", "$messageId", true)
             .addField("Timestamp Epoch", "${timestampEpoch.value}", true)
             .addField("Timestamp FMT", "${Date(timestampEpoch.value)}", true)
@@ -82,7 +83,7 @@ data class RecordMessageUpdate(
             .addField("Author Username", authorUsername, true)
             .addField("Author Effective Name", authorEffectiveName, true)
             .addField("Author Tag", "<@${authorId}>", true)
-            .addField("Jump URL", jumpUrl.truncate(), true)
+            .addField("Jump URL", jumpUrl.truncate(VALUE_MAX_LENGTH), true)
             .setFooter("${javaClass.simpleName} - ID#$id")
             .setColor(Color.LIGHT_GRAY)
 

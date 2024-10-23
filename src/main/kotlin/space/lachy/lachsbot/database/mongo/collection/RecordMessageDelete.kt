@@ -1,6 +1,7 @@
 package space.lachy.lachsbot.database.mongo.collection
 
 import net.dv8tion.jda.api.EmbedBuilder
+import net.dv8tion.jda.api.entities.MessageEmbed.VALUE_MAX_LENGTH
 import org.bson.BsonDateTime
 import org.bson.codecs.pojo.annotations.BsonId
 import org.bson.codecs.pojo.annotations.BsonProperty
@@ -57,7 +58,7 @@ data class RecordMessageDelete(
         return EmbedBuilder()
             .setTitle("Message Deleted")
             .setDescription("Discord's API does not advise who caused this, use Audit Log to check.")
-            .addField("Last Known Message Raw", messageRawLastKnown?.truncate() ?: "N/A", false)
+            .addField("Last Known Message Raw", messageRawLastKnown?.truncate(VALUE_MAX_LENGTH) ?: "N/A", false)
             .addField("Message ID", "$messageId", true)
             .addField("Timestamp Epoch", "${timestampEpoch.value}", true)
             .addField("Timestamp FMT", "${Date(timestampEpoch.value)}", true)
