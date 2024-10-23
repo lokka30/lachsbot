@@ -6,6 +6,7 @@ import org.bson.codecs.pojo.annotations.BsonId
 import org.bson.codecs.pojo.annotations.BsonProperty
 import org.bson.types.ObjectId
 import space.lachy.lachsbot.listener.record.RecordListenerManager
+import space.lachy.lachsbot.util.StringExtensions.truncate
 import java.awt.Color
 import java.util.*
 
@@ -65,8 +66,8 @@ data class RecordMessageUpdate(
     fun toEmbedBuilder(): EmbedBuilder {
         val builder = EmbedBuilder()
             .setTitle("Message Updated")
-            .addField("New Message Raw", messageRawNew, false)
-            .addField("Old Message Raw Last Known", messageRawLastKnown ?: "N/A", false)
+            .addField("New Message Raw", messageRawNew.truncate(), false)
+            .addField("Old Message Raw Last Known", messageRawLastKnown?.truncate() ?: "N/A", false)
             .addField("Message ID", "$messageId", true)
             .addField("Timestamp Epoch", "${timestampEpoch.value}", true)
             .addField("Timestamp FMT", "${Date(timestampEpoch.value)}", true)
@@ -81,7 +82,7 @@ data class RecordMessageUpdate(
             .addField("Author Username", authorUsername, true)
             .addField("Author Effective Name", authorEffectiveName, true)
             .addField("Author Tag", "<@${authorId}>", true)
-            .addField("Jump URL", jumpUrl, true)
+            .addField("Jump URL", jumpUrl.truncate(), true)
             .setFooter("${javaClass.simpleName} - ID#$id")
             .setColor(Color.LIGHT_GRAY)
 

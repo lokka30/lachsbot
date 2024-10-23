@@ -5,6 +5,7 @@ import org.bson.BsonDateTime
 import org.bson.codecs.pojo.annotations.BsonId
 import org.bson.codecs.pojo.annotations.BsonProperty
 import org.bson.types.ObjectId
+import space.lachy.lachsbot.util.StringExtensions.truncate
 import java.awt.Color
 import java.util.*
 
@@ -56,7 +57,7 @@ data class RecordMessageDelete(
         return EmbedBuilder()
             .setTitle("Message Deleted")
             .setDescription("Discord's API does not advise who caused this, use Audit Log to check.")
-            .addField("Last Known Message Raw", messageRawLastKnown ?: "N/A", false)
+            .addField("Last Known Message Raw", messageRawLastKnown?.truncate() ?: "N/A", false)
             .addField("Message ID", "$messageId", true)
             .addField("Timestamp Epoch", "${timestampEpoch.value}", true)
             .addField("Timestamp FMT", "${Date(timestampEpoch.value)}", true)

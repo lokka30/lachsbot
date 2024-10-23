@@ -19,6 +19,7 @@ import space.lachy.lachsbot.listener.record.delegate.MessageReceivedRecordListen
 import space.lachy.lachsbot.listener.record.delegate.MessageUpdateRecordListener
 import space.lachy.lachsbot.listener.record.delegate.StatusChangeRecordListener
 import space.lachy.lachsbot.listener.record.delegate.UserUpdateOnlineStatusRecordListener
+import space.lachy.lachsbot.util.StringExtensions.truncate
 
 object RecordListenerManager {
 
@@ -82,7 +83,7 @@ object RecordListenerManager {
         for(att in attachments) {
             builder.addField(
                 "Attachment ${i}",
-                "Name: '${att.name}'; Extension: '${att.extension}'; URL: '${att.url}'",
+                "Name: '${att.name}'; Extension: '${att.extension}'; URL: '${att.url}'".truncate(),
                 false
             )
 

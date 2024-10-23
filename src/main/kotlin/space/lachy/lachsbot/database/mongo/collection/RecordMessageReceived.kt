@@ -1,11 +1,13 @@
 package space.lachy.lachsbot.database.mongo.collection
 
 import net.dv8tion.jda.api.EmbedBuilder
+import net.dv8tion.jda.api.entities.MessageEmbed.VALUE_MAX_LENGTH
 import org.bson.BsonDateTime
 import org.bson.codecs.pojo.annotations.BsonId
 import org.bson.codecs.pojo.annotations.BsonProperty
 import org.bson.types.ObjectId
 import space.lachy.lachsbot.listener.record.RecordListenerManager
+import space.lachy.lachsbot.util.StringExtensions.truncate
 import java.awt.Color
 import java.util.*
 
@@ -59,7 +61,7 @@ data class RecordMessageReceived(
     fun toEmbedBuilder(): EmbedBuilder {
         val builder = EmbedBuilder()
             .setTitle("Message Received")
-            .addField("Message", messageRaw, false)
+            .addField("Message", messageRaw.truncate(VALUE_MAX_LENGTH), false)
             .addField("Message ID", "$messageId", true)
             .addField("Timestamp Epoch", "${timestampEpoch.value}", true)
             .addField("Timestamp FMT", "${Date(timestampEpoch.value)}", true)
@@ -72,7 +74,7 @@ data class RecordMessageReceived(
             .addField("Author Username", authorUsername, true)
             .addField("Author Effective Name", authorEffectiveName, true)
             .addField("Author Tag", "<@${authorId}>", true)
-            .addField("Jump URL", jumpUrl, true)
+            .addField("Jump URL", jumpUrl.truncate(VALUE_MAX_LENGTH), true)
             .setFooter("${javaClass.simpleName} - ID#$id")
             .setColor(Color.LIGHT_GRAY)
 
