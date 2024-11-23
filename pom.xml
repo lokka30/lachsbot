@@ -179,4 +179,18 @@
         </dependency>
     </dependencies>
 
+    <licenses>
+        <license>
+            <name>GNU Affero General Public License v3.0</name>
+        </license>
+    </licenses>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/lokka30/lachsbot</url>
+        </repository>
+    </distributionManagement>
+
+
 </project>
