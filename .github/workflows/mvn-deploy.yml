@@ -45,7 +45,7 @@ jobs:
 
       - uses: AButler/upload-release-assets@v3.0
         with:
-          files: "lachsbot/target/lachsbot.jar"
+          files: "target/lachsbot.jar"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Login to GitHub CR
