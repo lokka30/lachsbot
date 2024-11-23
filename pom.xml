@@ -6,7 +6,7 @@
 
     <artifactId>lachsbot</artifactId>
     <groupId>space.lachy.lachsbot</groupId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.3</version>
     <packaging>jar</packaging>
 
     <name>lachsbot</name>
