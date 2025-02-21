@@ -4,6 +4,8 @@ import org.spongepowered.configurate.CommentedConfigurationNode
 import org.spongepowered.configurate.yaml.NodeStyle
 import org.spongepowered.configurate.yaml.YamlConfigurationLoader
 import space.lachy.lachsbot.LachsBot.logger
+import space.lachy.lachsbot.config.infochapter.InfoChapter
+import java.awt.Color
 import java.io.InputStream
 import java.nio.file.Files
 import java.nio.file.Path
@@ -20,6 +22,7 @@ object Config {
     private var loaded: Boolean = false
     private lateinit var loader: YamlConfigurationLoader
     private lateinit var root: CommentedConfigurationNode
+    val infoChapters: MutableList<InfoChapter> = mutableListOf()
 
     private fun initLoader() {
         loader = YamlConfigurationLoader.builder()
@@ -30,6 +33,25 @@ object Config {
 
     private fun initRoot() {
         root = loader.load()
+        infoChapters.clear()
+        loadInfoChapters()
+    }
+
+    private fun loadInfoChapters() {
+        root
+            .node("info-chapters")
+            .childrenList()
+            .forEach { node ->
+                infoChapters.add(
+                    InfoChapter(
+                        id = node.node("id").string!!,
+                        title = node.node("title").string!!,
+                        description = node.node("description").string!!,
+                        color = Color(node.node("color").int),
+                        footer = node.node("footer").string!!
+                    )
+                )
+            }
     }
 
     fun start() {
@@ -37,9 +59,9 @@ object Config {
             throw IllegalStateException("Config already loaded")
         }
 
+        copyDefaultFile(requireNotExists = true)
         initLoader()
         initRoot()
-        copyDefaultFile(requireNotExists = true)
         loaded = true
     }
 
@@ -58,8 +80,8 @@ object Config {
             throw IllegalStateException("Config is not loaded yet")
         }
 
-        initRoot()
         copyDefaultFile(requireNotExists = true)
+        initRoot()
     }
 
     @Suppress("unused")

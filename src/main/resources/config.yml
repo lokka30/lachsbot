@@ -5,3 +5,9 @@ embed-poster:
     - "message_received_records"
 join-announcer:
   channel-by-guild:
+info-chapters:
+  - id: "example"
+    title: "Example!"
+    description: "This is an example.\nThis is another line."
+    color: 0xFFFF00
+    footer: "Requested by %sender-name%"

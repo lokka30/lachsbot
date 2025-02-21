@@ -16,6 +16,7 @@ object StatusCommand : CliCommand {
         sb.append("\nStatus Report\n")
         sb.append("=============\n")
         sb.append("\n")
+        sb.append("Version: \${project.version}")
         sb.append("Uptime: ${TimeUtil.formatMillisToDuration(JvmUtil.getUptimeMs())}\n")
 
         logger.info(sb.toString())

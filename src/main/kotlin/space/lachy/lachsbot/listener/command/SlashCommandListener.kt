@@ -4,6 +4,7 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import space.lachy.lachsbot.LachsBot
 import space.lachy.lachsbot.LachsBot.logger
+import space.lachy.lachsbot.listener.command.delegate.InfoSlashCommand
 import space.lachy.lachsbot.listener.command.delegate.PurgeSlashCommand
 import space.lachy.lachsbot.listener.command.delegate.ReloadSlashCommand
 import space.lachy.lachsbot.listener.command.delegate.ShutdownSlashCommand
@@ -12,6 +13,7 @@ import space.lachy.lachsbot.util.ThrowableUtil
 object SlashCommandListener : ListenerAdapter() {
 
     private val commands: Collection<SlashCommand> = setOf(
+        InfoSlashCommand,
         PurgeSlashCommand,
         ReloadSlashCommand,
         ShutdownSlashCommand,
