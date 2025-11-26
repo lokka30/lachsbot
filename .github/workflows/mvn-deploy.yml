@@ -40,6 +40,9 @@ jobs:
           files: "target/lachsbot.jar"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Stage JAR for Docker
+        run: cp target/lachsbot.jar lachsbot.jar
+
       - name: Login to GitHub CR
         uses: docker/login-action@v3
         with:
