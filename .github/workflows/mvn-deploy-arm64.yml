@@ -31,14 +31,12 @@ jobs:
           cache: maven
 
       - name: Build and deploy with Maven
-        run: mvn --batch-mode deploy --settings settings.xml
+        run: mvn --batch-mode package --settings settings.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: AButler/upload-release-assets@v3.0
-        with:
-          files: "target/lachsbot.jar"
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      # use 'package' instead of 'deploy' as the mvn-deploy
+      # workflow handles deployment and release uploading.
 
       - name: Login to GitHub CR
         uses: docker/login-action@v3
